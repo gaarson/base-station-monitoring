@@ -1,0 +1,15 @@
+.graph {
+  margin-top: 15px;
+}
+
+.graph line {
+  stroke: rgba(224, 224, 224, 0.1);
+  font-size: 13px; 
+  font-family: var(--roboto);
+}
+
+.graph text {
+  font-size: 13px; 
+  font-family: var(--roboto);
+}
+
