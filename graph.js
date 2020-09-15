@@ -219,17 +219,3 @@ const getData = () => new Promise((resolve) => {
   });
 });
 
-(async () => {
-  const data = await getData();
-
-  console.log(data);
-
-  trafficGraph(data);
-  voLteGraph(data);
-  voLteGraph(data);
-
-  scfbGraph(data);
-
-  //generateGraph('#csfb-graph', data);
-})()
-
