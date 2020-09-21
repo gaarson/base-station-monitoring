@@ -103,7 +103,6 @@ function collectData(entity, colors, attached, detached) {
   }
 
   if (info.current && attached.successObjectList.length) {
-    console.log(info);
     const arr = [...info.current, ...attached.successObjectList];
     info = {
       ...info, 
@@ -156,8 +155,6 @@ stomp.connect({}, (frame) => {
     handoverIn = collectData(handoverIn, trafficColors, parsedData.controlPlane.handoverIn);
     handoverOut = collectData(handoverOut, trafficColors, parsedData.controlPlane.handoverOut);
 
-    console.log(parsedData);
-
     voLteUsers = collectData(
       voLteUsers, 
       voLteColors, 
@@ -190,7 +187,6 @@ stomp.connect({}, (frame) => {
     handoverIn = { success: [], attempt: [] };
     handoverOut = { success: [], attempt: [] };
 
-    console.log(trafficData);
     drawTraffic(
       {},
       trafficUsers, 
