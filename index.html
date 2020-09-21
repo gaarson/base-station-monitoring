@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="./css/graph.css">
 </head>
 <body id="root" class="body">
-  <svg>
+  <svg style="height: 0px;">
     <filter id="drop-shadow" y0="-50%" height="200%" x0="-50%" width="200%">
       <feGaussianBlur in="SourceAlpha" result="blur" stdDeviation="18"></feGaussianBlur>
       <feOffset dx="0" dy="0"></feOffset>
@@ -33,36 +33,36 @@
         <ul class="header-info">
           <li class="header-info-item">
             <span class="header-info-item_label">Cell ID:</span>
-            <span class="header-info-item_text">{{ cellId }}</span>
+            <span class="header-info-item_text">{{identity.cellId}}</span>
           </li>
           <li class="header-info-item">
             <span class="header-info-item_label">TAC:</span>
-            <span class="header-info-item_text">9014</span>
+            <span class="header-info-item_text">{{identity.tac}}</span>
           </li>
           <li class="header-info-item">
             <span class="header-info-item_label">Частота:</span>
-            <span class="header-info-item_text">1870 МГц</span>
+            <span class="header-info-item_text">{{rf.frequency}}</span>
           </li>
           <li class="header-info-item">
             <span class="header-info-item_label">Мощность:</span>
-            <span class="header-info-item_text">10 Вт</span>
+            <span class="header-info-item_text">{{rf.power}}</span>
           </li>
           <li class="header-info-item">
             <span class="header-info-item_label">Режим передачи:</span>
-            <span class="header-info-item_text">MIMO 2x2</span>
+            <span class="header-info-item_text">{{rf.txScheme}}</span>
           </li>
           <li class="header-info-item">
             <span class="header-info-item_label">Ширина полосы:</span>
-            <span class="header-info-item_text">10 МГц</span>
+            <span class="header-info-item_text">{{rf.bandwidth}}</span>
           </li>
           <li class="header-info-item">
             <span class="header-info-item_label">Версия ПО:</span>
-            <span class="header-info-item_text">1.01</span>
+            <span class="header-info-item_text">{{generic.softwareVersion}}</span>
           </li>
         </ul>
       </div>
       <div class="header-right">
-        <address class="header-address">Тази Гиззата 6/31</address>
+        <address class="header-address"></address>
       </div>
   </script>
 
@@ -84,105 +84,45 @@
     <div class="row mb-4">
       <div class="col-8">
         <div class="traffic-item mb-3">
-          <p class="count-block mr-3">27</p>
-          <div class="traffic-item_info">
-            <p class="traffic-item_title">UE Amount</p>
-            <span class="traffic-item_desc">Подключенных абонентов</span>
-          </div>
-        </div>
-        <div class="traffic-item mb-3">
-          <p class="count-block mr-3">8/2</p>
+          <p class="count-block mr-3">{{users.attempt.length}}/{{users.success.length}}</p>
           <div class="traffic-item_info">
             <p class="traffic-item_title">UE Attch Request / Successful</p>
             <span class="traffic-item_desc">Попыток подключения / Всего успешных</span>
           </div>
         </div>
         <div class="traffic-item mb-3">
-          <p class="count-block mr-3">15/10</p>
+          <p class="count-block mr-3">{{handover.in.attempt.length}}/{{handover.in.success.length}}</p>
           <div class="traffic-item_info">
             <p class="traffic-item_title">UE Handover IN / Successful</p>
             <span class="traffic-item_desc">Входящих Handover’ов / Всего успешных</span>
           </div>
         </div>
         <div class="traffic-item mb-3">
-          <p class="count-block mr-3">10/9</p>
+          <p class="count-block mr-3">{{handover.out.attempt.length}}/{{handover.out.success.length}}</p>
           <div class="traffic-item_info">
             <p class="traffic-item_title">UE Handover OUT / Successful</p>
             <span class="traffic-item_desc">Исходящих Handover’ов / Всего успешных</span>
           </div>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-4 lines">
         <div class="displayed-subscribers">
           <h3 class="displayed-subscribers-title">Отображаемые абоненты</h3>
           <div class="row displayed-subscribers-cols">
-            <div>
+            <div class="users">
               <div class="fields mb">
                 <span>Линия</span>
                 <span>ID</span>
               </div>
-              <label class="checkbox-wrap">
-                <input type="checkbox">
-                <div class="checkbox">
-                  <span class="checkbox-line" style="background-color: #ED5B57;"></span>
-                  <p class="checkbox-label">28</p>
-                </div>
-              </label>
-              <label class="checkbox-wrap">
-                <input type="checkbox">
-                <div class="checkbox">
-                  <span class="checkbox-line" style="background-color: #1BF0AD;"></span>
-                  <p class="checkbox-label">39</p>
-                </div>
-              </label>
-              <label class="checkbox-wrap">
-                <input type="checkbox">
-                <div class="checkbox">
-                  <span class="checkbox-line" style="background-color: #2F80ED;"></span>
-                  <p class="checkbox-label">05</p>
-                </div>
-              </label>
-              <label class="checkbox-wrap">
-                <input type="checkbox">
-                <div class="checkbox">
-                  <span class="checkbox-line" style="background-color: #F2994A;"></span>
-                  <p class="checkbox-label">70</p>
-                </div>
-              </label>
-              <label class="checkbox-wrap">
-                <input type="checkbox">
-                <div class="checkbox">
-                  <span class="checkbox-line" style="background-color: #9B51E0;"></span>
-                  <p class="checkbox-label">67</p>
-                </div>
-              </label>
-            </div>
-            <div>
-              <div class="fields mb">
-                <span>Линия</span>
-                <span>ID</span>
-              </div>
-              <label class="checkbox-wrap">
-                <input type="checkbox">
-                <div class="checkbox">
-                  <span class="checkbox-line" style="background-color: #F2C94C;"></span>
-                  <p class="checkbox-label">95</p>
-                </div>
-              </label>
-              <label class="checkbox-wrap">
-                <input type="checkbox">
-                <div class="checkbox">
-                  <span class="checkbox-line" style="background-color: #56CCF2;"></span>
-                  <p class="checkbox-label">15</p>
-                </div>
-              </label>
-              <label class="checkbox-wrap">
-                <input type="checkbox">
-                <div class="checkbox">
-                  <span class="checkbox-line" style="background-color: #BDBDBD;"></span>
-                  <p class="checkbox-label">18</p>
-                </div>
-              </label>
+              {{#each users.current as |user|}}
+                <label class="checkbox-wrap">
+                  <input type="checkbox">
+                  <div class="checkbox">
+                    <span class="checkbox-line" style="background-color: {{user.color}};"></span>
+                    <p class="checkbox-label">{{user.ueId}}</p>
+                  </div>
+                </label>
+              {{/each}}
             </div>
           </div>
         </div>
@@ -196,38 +136,35 @@
     <div class="row">
       <div class="col-8">
         <div class="traffic-item mb-3">
-          <p class="count-block mr-3">2</p>
+          <p class="count-block mr-3">{{users.length}}</p>
           <div class="traffic-item_info">
             <p class="traffic-item_title">UE VoLTE</p>
             <span class="traffic-item_desc">Голосовых вызовов в 4G</span>
           </div>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-4 lines">
         <div class="displayed-subscribers active-connections">
           <h3 class="displayed-subscribers-title">Активные соединения</h3>
-          <div class="fields mb">
-            <span>Линия</span>
-            <span>ID</span>
+          <div class="users">
+            <div class="fields mb">
+              <span>Линия</span>
+              <span>ID</span>
+            </div>
+            {{#each users.current as |user|}}
+              <label class="checkbox-wrap">
+                <input type="checkbox">
+                <div class="checkbox">
+                  <span class="checkbox-line" style="background-color: {{user.color}};"></span>
+                  <p class="checkbox-label">{{user.ueId}}</p>
+                </div>
+              </label>
+            {{/each}}
           </div>
-          <label class="checkbox-wrap">
-            <input type="checkbox">
-            <div class="checkbox">
-              <span class="checkbox-line" style="background-color: #1BF0AD;"></span>
-              <p class="checkbox-label">39</p>
-            </div>
-          </label>
-          <label class="checkbox-wrap">
-            <input type="checkbox">
-            <div class="checkbox">
-              <span class="checkbox-line" style="background-color: #F2994A;"></span>
-              <p class="checkbox-label">70</p>
-            </div>
-          </label>
         </div>
       </div>
     </div>
-    <div id="vo-lte-graph" class="graph" style="width: 100%; height: 100px"></div>
+    <div id="vo-lte-graph" class="graph side" style="width: 108%; height: 60%"></div>
   </script>
 
   <script id="csfb-template" type="text/x-handlebars-template">
@@ -235,57 +172,42 @@
     <div class="row">
       <div class="col-8">
         <div class="traffic-item mb-3">
-          <p class="count-block mr-3">2</p>
+          <p class="count-block mr-3">{{users.current.length}}</p>
           <div class="traffic-item_info">
-            <p class="traffic-item_title">UE VoLTE</p>
-            <span class="traffic-item_desc">Голосовых вызовов в 4G</span>
+            <p class="traffic-item_title">UE CSFB</p>
+            <span class="traffic-item_desc">Голосовых вызовов в 2G</span>
           </div>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-4 lines">
         <div class="displayed-subscribers active-connections">
           <h3 class="displayed-subscribers-title">Активные соединения</h3>
-          <div class="fields mb">
-            <span>Линия</span>
-            <span>ID</span>
+          <div class="users">
+            <div class="fields mb">
+              <span>Линия</span>
+              <span>ID</span>
+            </div>
+            {{#each users.current as |user|}}
+              <label class="checkbox-wrap">
+                <input type="checkbox">
+                <div class="checkbox">
+                  <span class="checkbox-line" style="background-color: {{user.color}};"></span>
+                  <p class="checkbox-label">{{user.ueId}}</p>
+                </div>
+              </label>
+            {{/each}}
           </div>
-          <label class="checkbox-wrap">
-            <input type="checkbox">
-            <div class="checkbox">
-              <span class="checkbox-line" style="background-color: #1BF0AD;"></span>
-              <p class="checkbox-label">39</p>
-            </div>
-          </label>
-          <label class="checkbox-wrap">
-            <input type="checkbox">
-            <div class="checkbox">
-              <span class="checkbox-line" style="background-color: #F2994A;"></span>
-              <p class="checkbox-label">70</p>
-            </div>
-          </label>
         </div>
       </div>
     </div>
-    <div id="csfb-graph" class="graph" style="width: 100%; height: 100px"></div>
+    <div id="csfb-graph" class="graph side" style="width: 108%; height: 50%"></div>
   </script>
 
-  <!-- <script id="template" type="text/x-handlebars-template">
-    <div class="main">
-      <div class="row full-height">
-        <div class="col-5">
-          <div class="row row-column full-height">
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </script> -->
-
-  <script src="./stomp.js"></script>
-  <script src="https://d3js.org/d3.v4.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"></script>
-  <script src="./graph.js"></script>
-  <script src="./main.js"></script>
+  <script src="./js/stomp.js"></script>
+  <script src="./js/d3.v4.js"></script>
+  <script src="./js/sockjs.min.js"></script>
+  <script src="./js/handlebars.min.js"></script>
+  <script src="./js/graph.js"></script>
+  <script src="./js/main.js"></script>
 </body>
 </html>
