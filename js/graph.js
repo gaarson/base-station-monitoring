@@ -263,8 +263,8 @@ function voLteGraph(data) {
 
   const x = d3.scaleTime()
     .domain([
-      d3.min(data, function(d) { return new Date(d.timestamp).setMinutes(new Date(d.timestamp).getMinutes() - 1) }),
-      d3.max(data, function(d) { return new Date(d.timestamp).setMinutes(new Date(d.timestamp).getMinutes() + 1); }),
+      d3.min(data, function(d) { return new Date().setMinutes(new Date().getMinutes() - 10) }),
+      d3.max(data, function(d) { return new Date() }),
     ])
     .range([ 0, width ]);
   const y = createY(data, height);

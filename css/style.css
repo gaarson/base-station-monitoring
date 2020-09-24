@@ -364,7 +364,7 @@ html, body {
   bottom: 50px;
 }
 .users {
-  max-height: 215px;
+  height: 215px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;

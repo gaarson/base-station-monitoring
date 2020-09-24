@@ -1,4 +1,4 @@
-const SOCKET_URL = 'http://192.168.101.174:8080/gs-guide-websocket';
+const SOCKET_URL = 'http://192.168.0.34:8080/gs-guide-websocket';
 
 let trafficData = [];
 let voLteData = [];
@@ -38,8 +38,11 @@ function filterDataByDate(data) {
 }
 
 function generateDataForCSFallback(users) {
+  trafficUsers = collectData(trafficUsers, trafficColors, [], users);
+  voLteUsers = collectData(voLteUsers, voLteColors, [], users);
+
   const oneMinutesAgo = new Date(new Date().setMinutes(new Date().getMinutes() - 1)).valueOf();
-  const data =users.reduce((prev, curr) => {
+  const data = users.reduce((prev, curr) => {
     return [
       ...prev,
       {
@@ -49,7 +52,10 @@ function generateDataForCSFallback(users) {
       }
     ];
   }, csfbData) 
-  const oldUsers =  data.filter((item) => new Date(item.timestamp).valueOf() < oneMinutesAgo).map(i => i.ueId);
+
+  const oldUsers = data.filter(
+    (item) => new Date(item.timestamp).valueOf() < oneMinutesAgo
+  ).map(i => i.ueId);
 
   if (oldUsers.length) {
     csfbUsers = {
@@ -146,15 +152,14 @@ stomp.connect({}, (frame) => {
     csfbColors = generateGradientColors(parseData(csfbData));
     voLteColors = generateGradientColors(parseData(voLteData));
 
+    handoverIn = collectData(handoverIn, trafficColors, parsedData.controlPlane.handoverIn);
+    handoverOut = collectData(handoverOut, trafficColors, parsedData.controlPlane.handoverOut);
     trafficUsers = collectData(
       trafficUsers, 
       trafficColors,
       parsedData.controlPlane.attach, 
       parsedData.controlPlane.detach
     );
-    handoverIn = collectData(handoverIn, trafficColors, parsedData.controlPlane.handoverIn);
-    handoverOut = collectData(handoverOut, trafficColors, parsedData.controlPlane.handoverOut);
-
     voLteUsers = collectData(
       voLteUsers, 
       voLteColors, 
@@ -183,6 +188,9 @@ stomp.connect({}, (frame) => {
 
     trafficData = filterDataByDate([...trafficData, ...parsedData.internet.objectList]);
     voLteData = filterDataByDate([...voLteData, ...parsedData.voLte.objectList]);
+
+    voLteUsers = { success: [], attempt: [], current: [] };
+    csfbUsers = { success: [], attempt: [], current: [] };
     trafficUsers = { success: [], attempt: [], current: [] };
     handoverIn = { success: [], attempt: [] };
     handoverOut = { success: [], attempt: [] };
@@ -195,7 +203,7 @@ stomp.connect({}, (frame) => {
     drawVoLte({});
   });
 }, () => {
-  setTimeout(() => {
-    location.reload();
-  }, 2000)
+  // setTimeout(() => {
+  //   location.reload();
+  // }, 2000)
 });

@@ -66,7 +66,7 @@
       </div>
   </script>
 
-  <div class="main">
+  <div style="padding-bottom: 0" class="main">
       <div class="row full-height">
           <div class="col-7 block pa-4 ml mr" id="traffic"></div>
 
@@ -81,7 +81,7 @@
 
   <script id="traffic-template" type="text/x-handlebars-template">
     <h2 class="title">Traffic</h2>
-    <div class="row mb-4">
+    <div style="margin-bottom: -20px; height: 265px;" class="row mb-4">
       <div class="col-8">
         <div class="traffic-item mb-3">
           <p class="count-block mr-3">{{users.attempt.length}}/{{users.success.length}}</p>
@@ -133,7 +133,7 @@
 
   <script id="vo-lte-template" type="text/x-handlebars-template">
     <h2 class="title">VoLTE</h2>
-    <div class="row">
+    <div style="height: 165px;" class="row">
       <div class="col-8">
         <div class="traffic-item mb-3">
           <p class="count-block mr-3">{{users.current.length}}</p>
@@ -146,7 +146,7 @@
       <div class="col-4 lines">
         <div class="displayed-subscribers active-connections">
           <h3 class="displayed-subscribers-title">Активные соединения</h3>
-          <div class="users">
+          <div style="height: 125px;" class="users">
             <div class="fields mb">
               <span>Линия</span>
               <span>ID</span>
@@ -164,12 +164,12 @@
         </div>
       </div>
     </div>
-    <div id="vo-lte-graph" class="graph side" style="width: 108%; height: 60%"></div>
+    <div id="vo-lte-graph" class="graph side" style="width: 108%; height: 45%"></div>
   </script>
 
   <script id="csfb-template" type="text/x-handlebars-template">
     <h2 class="title">CSFB</h2>
-    <div class="row">
+    <div style="height: 175px;" class="row">
       <div class="col-8">
         <div class="traffic-item mb-3">
           <p class="count-block mr-3">{{users.current.length}}</p>
@@ -182,7 +182,7 @@
       <div class="col-4 lines">
         <div class="displayed-subscribers active-connections">
           <h3 class="displayed-subscribers-title">Активные соединения</h3>
-          <div class="users">
+          <div style="height: 125px;" class="users">
             <div class="fields mb">
               <span>Линия</span>
               <span>ID</span>
@@ -200,7 +200,7 @@
         </div>
       </div>
     </div>
-    <div id="csfb-graph" class="graph side" style="width: 108%; height: 50%"></div>
+    <div id="csfb-graph" class="graph side" style="width: 108%; height: 40%"></div>
   </script>
 
   <script src="./js/stomp.js"></script>
